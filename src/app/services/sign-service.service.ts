@@ -1,17 +1,18 @@
-import { EmailDTO } from './../models/emailDTO';
-import { Router } from '@angular/router';
-import { StorageServiceService } from './storage-service.service';
-import { SignUpUser } from './../models/users/signup-user';
-import { LoginUser } from './../models/users/login-user';
+import {EmailDTO} from './../models/emailDTO';
+import {Router} from '@angular/router';
+import {StorageServiceService} from './storage-service.service';
+import {SignUpUser} from './../models/users/signup-user';
+import {LoginUser} from './../models/users/login-user';
 import {
   HttpClient,
   HttpHeaders,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { LocalUser } from '../models/users/local-user';
+import {Injectable} from '@angular/core';
+import {LocalUser} from '../models/users/local-user';
 import jwt_decode from 'jwt-decode';
-import { GlobalAPI } from './api.service';
+import {GlobalAPI} from './api.service';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -30,14 +31,15 @@ export class SignServiceService {
     private httpClient: HttpClient,
     private storage: StorageServiceService,
     private router: Router,
-  ) {}
+  ) {
+  }
 
   login(user: LoginUser): any {
     return this.httpClient
       .post<any>(this.apiUrl + '/login', JSON.stringify(user), {
         observe: 'response',
       })
-     
+
   }
 
   userStorageFromToken(tokenFromRequest: string) {
@@ -56,6 +58,7 @@ export class SignServiceService {
       this.httpOptions
     );
   }
+
   signUpClient(client: SignUpUser) {
     return this.httpClient.post<any>(
       this.apiUrl + '/create/client',
@@ -64,7 +67,7 @@ export class SignServiceService {
     );
   }
 
-  forgotPassword(email: EmailDTO){
+  forgotPassword(email: EmailDTO) {
     return this.httpClient.post<any>(
       this.apiUrl + '/forgot',
       JSON.stringify(email),

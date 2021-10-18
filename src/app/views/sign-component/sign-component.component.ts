@@ -15,7 +15,7 @@ import { LoginUser } from '../../models/users/login-user';
 export class SignComponentComponent implements OnInit {
   constructor(
     private signService: SignServiceService,
-    private _snackBar: MatSnackBar,
+    private snackBar: MatSnackBar,
     private storage: StorageServiceService,
   ) {}
 
@@ -81,7 +81,7 @@ export class SignComponentComponent implements OnInit {
   }
 
   confirmationSignUp() {
-    this._snackBar.open(
+    this.snackBar.open(
       'Your profile was created',
       'Dismiss',
 
@@ -97,7 +97,7 @@ export class SignComponentComponent implements OnInit {
     this.errorSignUp();
   }
   errorSignUp() {
-    this._snackBar.open(
+    this.snackBar.open(
       'This email is being used by other user',
       'I got it',
 
@@ -135,7 +135,7 @@ export class SignComponentComponent implements OnInit {
   }
 
   snackBarErrorLogin() {
-    this._snackBar.open(
+    this.snackBar.open(
       'Email or password incorrect',
       'I got it',
 
@@ -158,7 +158,7 @@ export class SignComponentComponent implements OnInit {
 
 
   forgotPassword() {
-    
+
     this.isLoading = true;
     this.emailDTO.email = this.loginForm.value.email;
     this.signService.forgotPassword(this.emailDTO).subscribe(() => {
@@ -167,10 +167,10 @@ export class SignComponentComponent implements OnInit {
     })
   }
 
- 
+
 
   snackBarEmailSent() {
-    this._snackBar.open(
+    this.snackBar.open(
       'A new password is being sent to your email. Please, check your mail out in a few seconds',
       'I got it',
 
